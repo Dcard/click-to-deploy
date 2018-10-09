@@ -132,7 +132,8 @@ spec:
 
                 # By default, RabbitMQ does not have Highly Available policies enabled,
                 # using the following command to enable it.
-                rabbitmqctl set_policy ha-all "." '{"ha-mode":"all", "ha-sync-mode":"automatic"}' --apply-to all --priority 0
+                rabbitmqctl set_policy ha-all "." '{"ha-mode":"all", "ha-sync-mode":"manual", "ha-promote-on-shutdown":"always"}' --apply-to all --priority 0
+                rabbitmqctl set_operator_policy max-length-all "." '{"max-length":100000}' --apply-to all --priority 100
       volumes:
       - name: configmap
         configMap:
